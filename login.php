@@ -8,13 +8,14 @@
 
     include('config.php');
 
-    $usuario = $_POST["usuario"];
-    $senha = $_POST["senha"];
+    $usuario = addslashes($_POST["usuario"]);
+    $senha = addslashes($_POST["senha"]);
 
     $sql = "SELECT * FROM usuarios 
             WHERE usuario = '{$usuario}'
             AND senha = '{$senha}'";
 
+    
     $res = $conn->query($sql) or die($conn->error);
 
     $row = $res->fetch_object();
